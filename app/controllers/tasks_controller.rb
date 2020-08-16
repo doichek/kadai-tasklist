@@ -9,6 +9,9 @@ class TasksController < ApplicationController
   
   def show
     @task = Task.find(params[:id])
+    if @task.user_id != current_user.id
+      redirect_to root_url
+    end
   end
   
   def new
@@ -28,6 +31,9 @@ class TasksController < ApplicationController
   
   def edit
     @task = Task.find(params[:id])
+    if @task.user_id != current_user.id
+      redirect_to root_url
+    end
   end
     
   def update
@@ -62,4 +68,5 @@ class TasksController < ApplicationController
       redirect_to root_url
     end
   end
+  
 end
